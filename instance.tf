@@ -39,21 +39,6 @@ resource "vsphere_folder" "vm_folder" {
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
-#Lets see something cool with Cisco Intersight & TFCB
-#resource "vsphere_virtual_machine" "vm_deploy" {
-#  count            = var.vm_count
-#  name             = "${var.vm_prefix}-${random_string.folder_name_prefix.id}-${count.index + 1}"
-
-#  resource_pool_id = data.vsphere_resource_pool.pool.id
-#  datastore_id     = data.vsphere_datastore.datastore.id
-#  folder           = vsphere_folder.vm_folder.path
-
-#  num_cpus = var.vm_cpu
-#  memory   = var.vm_memory
-#  guest_id = data.vsphere_virtual_machine.template.guest_id
-
- # scsi_type = data.vsphere_virtual_machine.template.scsi_type
-#}
   network_interface {
     network_id   = data.vsphere_network.network.id
     adapter_type = data.vsphere_virtual_machine.template.network_interface_types[0]
